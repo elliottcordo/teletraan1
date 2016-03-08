@@ -1,26 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class='container status'>
-		<div class='row text-center features'>
-			<div class='col-md-12' >
-				<h2><b>Job Status </b><br><br></h2>
-			</div>	
-		</div>
-	</div>
+    <!--<div class='container status'>-->
+		<!--<div class='row text-center features'>-->
+			<!--<div class='col-md-12' >-->
+				<!--<h2><b>Job Status </b><br><br></h2>-->
+			<!--</div>	-->
+		<!--</div>-->
+	<!--</div>-->
     <div class='container jobs-status'>
 		<div class='row'>
 			<div class='col-sm-2'>
-				<u><b><p> Name </p></b></u>
+				<b><p> Name </p></b>
 			</div>
 			<div class='col-sm-3'>
-				<u><b><p> Start </p></b></u>
+				<b><p> Start </p></b>
 			</div>
 			<div class='col-sm-3'>
-				<u><b><p> Duration </p></b></u>
+				<b><p> Duration </p></b>
 			</div>
 			<div class='col-sm-3'>
-				<u><b><p> Results </p></b></u>
+				<b><p> Results </p></b>
 			</div>
       </div>
     
@@ -36,12 +36,14 @@
 		    <p> {{ job.duration }} </p>
 		</div>
 		<div class='col-sm-3'>
-		    {% if job.status == "FAILED" %}
-		    <p class="alert alert-danger"><b> {{ job.status }} </b></p>
-		    {% elif job.status == "ERROR" %}
-		    <p class="alert alert-warning"><b> {{ job.status }} </b></p>
-		    {% else %}
-		    <p class="alert alert-success"><b> {{ job.status }} </b></p>
+		    {% if job.status == "FAILURE" %}
+		    <p class="alert-sm alert-danger"><b> {{ job.status }} </b></p>
+		    {% elif job.status == "WARNING" %}
+		    <p class="alert-sm alert-warning"><b> {{ job.status }} </b></p>
+		    {% elif job.status == "SUCCESS" %}
+		    <p class="alert-sm alert-success"><b> {{ job.status }} </b></p>
+			{% else %}
+			<p class="alert-sm alert-info"><b> {{ job.status }} </b></p>
 		    {% endif %}
 		</div>
 	 </div>
