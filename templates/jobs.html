@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class='container status'>
+		<div class='row text-center features'>
+			<div class='col-md-12' >
+				<h2><b>Job Status </b><br><br></h2>
+			</div>	
+		</div>
+	</div>
+    <div class='container jobs-status'>
+		<div class='row'>
+			<div class='col-sm-2'>
+				<u><b><p> Name </p></b></u>
+			</div>
+			<div class='col-sm-3'>
+				<u><b><p> Start </p></b></u>
+			</div>
+			<div class='col-sm-3'>
+				<u><b><p> Duration </p></b></u>
+			</div>
+			<div class='col-sm-3'>
+				<u><b><p> Results </p></b></u>
+			</div>
+      </div>
+    
+	  {% for job in jobs %}  
+		<div class='row well well-sm'>
+		<div class='col-sm-2'>
+		    <p> {{ job.job_name }} </p>
+		</div>
+		<div class='col-sm-3'>
+		    <p> {{ job.start_time }} </p>
+		</div>
+		<div class='col-sm-3'>
+		    <p> {{ job.duration }} </p>
+		</div>
+		<div class='col-sm-3'>
+		    {% if job.status == "FAILED" %}
+		    <p class="alert alert-danger"><b> {{ job.status }} </b></p>
+		    {% elif job.status == "ERROR" %}
+		    <p class="alert alert-warning"><b> {{ job.status }} </b></p>
+		    {% else %}
+		    <p class="alert alert-success"><b> {{ job.status }} </b></p>
+		    {% endif %}
+		</div>
+	 </div>
+	{% endfor %}
+    {% endblock %}
+</div>
+

@@ -1,0 +1,11 @@
+*.log
+*.pyc
+etl/logs/
+etl/etl.cfg
+etl/temp/
+*/.DS_Store
+etl/.DS_Store
+.DS_Store
+.idea
+etl.cfg
+
