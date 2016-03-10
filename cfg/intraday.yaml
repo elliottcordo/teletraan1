@@ -1,0 +1,15 @@
+Intraday Contracts:
+  sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_contracts'"
+  latency_min: 20
+Intraday EDW:
+  sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_dw_load_intraday'"
+  latency_min: 20
+Integrate SFDC:
+  sql: "dbo.DW_DQ_Infa_Teletran_Watch 'Wf_Integrate_SFDC'"
+  latency_min: 30
+SFDC Contract Actions:
+  sql: "dbo.DW_DQ_Infa_Teletran_Watch 'Wf_Integrate_SFDC_Contract_Actions'"
+  latency_min: 30
+EDW to SFDC:
+  sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_EDW_to_SFDC_INTRADAY'"
+  latency_min: 30
