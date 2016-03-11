@@ -1,0 +1,5 @@
+cython
+flask
+# first install ftp://ftp.is.co.za/mirror/fedora.redhat.com/epel/beta/7/x86_64/freetds-0.91-12.git0a42888.el7.x86_64.rpm
+# then freetds-devel-0.91-12.git0a42888.el7.x86_64.rpm
+pymssql
