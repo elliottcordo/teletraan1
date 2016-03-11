@@ -55,6 +55,7 @@ def get_jobs(config):
                logo = logo_url,
                status_path = '/{0}/jobs'.format(config),
                err_msg = err_msg)
+
     return render_template("jobs.html",
                            title= config + ': Job Status',
                            logo = logo_url,
@@ -71,6 +72,7 @@ def parse_checklist():
         check_list = yaml.load(checklist_yaml)
     return check_list
 
+
 class GetTestResult:
     def __init__(self):
         c = Conf()
@@ -84,26 +86,19 @@ class GetTestResult:
         self.TestDBConn = pymssql.connect(self.server, self.user, self.pwd, self.database)
     def exec_tests(self):
         result = []
-        check = parse_checklist()
+        checklist = parse_checklist()
         cursor = self.TestDBConn.cursor(as_dict=True)
-        for f in check:
-            cursor.execute(check[f]['sql'])
+        for f in checklist:
+            check = checklist[f]
+            type = check['type']
+            cursor.execute(check['sql'])
             row = cursor.fetchone()
-            max_latency = check[f]['latency_min']
-            latency =  (datetime.now() - row['last_end_time']).seconds/60
-            row['latency'] = latency
-            status = row['status']
-            row['name'] = f
-            if latency >= max_latency:
-                row['alert_level'] = 'FAILURE'
-                row['status_message'] = 'latency issue'
-            elif status == 1:
-                row['alert_level'] = 'FAILURE'
-            elif latency >= max_latency*.8:
-                row['alert_level'] = 'WARNING'
+            if type == 'intraday':
+                test = calc_intraday_tests(row, check)
             else:
-                row['alert_level'] = 'SUCCESS'
-            result.append(row)
+                print 'invalid test yo!'
+                continue
+            result.append(test)
         return result
     def close_connection(self):
         self.TestDBConn.close()
@@ -113,6 +108,23 @@ class GetTestResult:
         return result
 
 
+def calc_intraday_tests(result, check):
+    max_latency = check['latency_min']
+    latency =  (datetime.now() - result['last_end_time']).seconds/60
+    result['latency'] = latency
+    result['label'] = check['label']
+    status = result['status']
+    if latency >= max_latency:
+        result['alert_level'] = 'FAILURE'
+        result['status_message'] = 'latency issue'
+    elif status == 1:
+        result['alert_level'] = 'FAILURE'
+    elif latency >= max_latency*.8:
+        result['alert_level'] = 'WARNING'
+    else:
+        result['alert_level'] = 'SUCCESS'
+    print result
+    return result
 
 # ------------------------------------------------------------------------
 #logging wrapper:
