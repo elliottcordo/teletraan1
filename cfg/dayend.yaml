@@ -1,0 +1,25 @@
+DW Master2:
+  type: daily
+  sort: 1
+  label: 'DW Master2'
+  sql: "dbo.DW_DQ_Infa_Teletran_Watch_Daily 'wf_DW_Load_Master_2'"
+  end_time: '04:00'
+DW Main Load:
+  type: daily
+  sort: 2
+  label: 'DW Main Load'
+  sql: "dbo.DW_DQ_Infa_Teletran_Watch_Daily 'wf_dw_load_edw'"
+  end_time: '05:00'
+DW DMR:
+  type: daily
+  sort: 3
+  label: 'DW DMR'
+  sql: "dbo.DW_DQ_Infa_Teletran_Watch_Daily 'Wf_Datawarehouse_DMR'"
+  end_time: '06:00'
+
+DW Dashboard:
+  type: daily
+  sort: 4
+  label: 'DMR Dashboard'
+  sql: "dbo.DW_DQ_Infa_Teletran_Watch_Daily 'Wf_dw_dmr_dashboard'"
+  end_time: '06:30'
