@@ -18,21 +18,22 @@ Teletraan supports having multiple dashboards/views hosted within the same app. 
 ## Anatomy of the Yaml
 ```
 Intraday Contracts:
-  type: intraday
+  type: latency
   label: Intraday Contracts
   sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_contracts'"
   latency_min: 20
-Intraday EDW:
-  type: intraday
-  label: Intraday EDW
-  sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_dw_load_intraday'"
-  latency_min: 20
+  sort: 1
+DW Master2:
+  type: daily
+  label: 'DW Master2'
+  sql: "dbo.DW_DQ_Infa_Teletran_Watch_Daily 'wf_DW_Load_Master_2'"
+  end_time: '04:00'
+  sort: 2
 ```
-Right now we only have one type: intraday, but we will quickly expand to daily, and general data quality alerts (which can be mixed and matched in the same dashboard)
-
-* You specificy the label you want to see in the dashboard
-* specify the sql statement which represents the intraday test.  The SQL statement can be a stored proc or a query.  The results must conform to the data model illustrated in the next section.
-* specify the latency threshold we would start raising alerts, note that this is the threshold for critical failure, we will raise a warning at 80% of this threshold
+* specify a type, latency will trigger warnings if the time since last completion exceeds the latency_min parameter, daily will trigger warnings if it has not completed by the end_time parameter
+* enter a human readable label you want to see in the dashboard
+* specify the sql statement which represents the test.  The SQL statement can be a stored proc or a query.  The results must conform to the data model illustrated in the next section.
+* the sort parameter will control the order of the rows in the dashboard
 
 
 ### Test Data Model
