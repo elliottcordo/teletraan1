@@ -10,6 +10,8 @@ import pymssql
 import operator
 from flask import Flask, render_template, flash, redirect, request, url_for
 
+# ------------------------------------------------------------------------
+os.chdir(os.path.dirname(sys.argv[0]))
 
 #define err messages
 # ------------------------------------------------------------------------
