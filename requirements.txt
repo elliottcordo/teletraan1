@@ -1,5 +1,8 @@
 cython
 flask
-# first install ftp://ftp.is.co.za/mirror/fedora.redhat.com/epel/beta/7/x86_64/freetds-0.91-12.git0a42888.el7.x86_64.rpm
-# then freetds-devel-0.91-12.git0a42888.el7.x86_64.rpm
+# yum install gcc
+# yum install python-devel
+# yum install unixODBC
+# install freetds-0.91-12.git0a42888.el7.x86_64.rpm
+# install freetds-devel-0.91-12.git0a42888.el7.x86_64.rpm
 pymssql

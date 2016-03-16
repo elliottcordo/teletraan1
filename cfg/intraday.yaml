@@ -7,12 +7,12 @@ Intraday Interim Sync ESP2SFDC:
   type: latency
   label: Interim Sync ESP2SFDC
   sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_ESP2SFDC_Contact_Opportunity'"
-  latency_min: 30
+  latency_min: 40
 Intraday Interim Sync SFDC2ESP:
   type: latency
   label: Interim Sync SFDC2ESP
   sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_SFDC2ESP_Contact_Opportunity'"
-  latency_min: 30
+  latency_min: 40
 Intraday EDW:
   type: latency
   label: Intraday EDW
@@ -32,7 +32,7 @@ EDW to SFDC:
   type: latency
   label: EDW to SFDC
   sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_EDW_to_SFDC_INTRADAY'"
-  latency_min: 30
+  latency_min: 40
 DQ Test:
   type: dq
   label: dq test
