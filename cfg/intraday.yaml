@@ -1,39 +1,47 @@
 Intraday Contracts:
+  sort: 1
   type: latency
   label: Intraday Contracts
   sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_contracts'"
   latency_min: 20
 Intraday Interim Sync ESP2SFDC:
+  sort: 4
   type: latency
   label: Interim Sync ESP2SFDC
   sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_ESP2SFDC_Contact_Opportunity'"
   latency_min: 40
 Intraday Interim Sync SFDC2ESP:
+  sort: 3
   type: latency
   label: Interim Sync SFDC2ESP
   sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_SFDC2ESP_Contact_Opportunity'"
   latency_min: 40
 Intraday EDW:
+  sort: 2
   type: latency
   label: Intraday EDW
   sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_dw_load_intraday'"
   latency_min: 20
 Integrate SFDC:
+  sort: 5
   type: latency
   label: Integrate SFDC
   sql: "dbo.DW_DQ_Infa_Teletran_Watch 'Wf_Integrate_SFDC'"
   latency_min: 30
 SFDC Contract Actions:
+  sort: 6
   type: latency
   label: SFDC Contract Actions
   sql: "dbo.DW_DQ_Infa_Teletran_Watch 'Wf_Integrate_SFDC_Contract_Actions'"
   latency_min: 30
 EDW to SFDC:
+  sort: 7
   type: latency
   label: EDW to SFDC
   sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_EDW_to_SFDC_INTRADAY'"
   latency_min: 40
 DQ Test:
+  sort: 8
   type: dq
   label: dq test
   sql: "select 1 as one"
