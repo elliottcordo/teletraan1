@@ -3,6 +3,16 @@ Intraday Contracts:
   label: Intraday Contracts
   sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_contracts'"
   latency_min: 20
+Intraday Interim Sync ESP2SFDC:
+  type: latency
+  label: Interim Sync ESP2SFDC
+  sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_ESP2SFDC_Contact_Opportunity'"
+  latency_min: 30
+Intraday Interim Sync SFDC2ESP:
+  type: latency
+  label: Interim Sync SFDC2ESP
+  sql: "dbo.DW_DQ_Infa_Teletran_Watch 'wf_SFDC2ESP_Contact_Opportunity'"
+  latency_min: 30
 Intraday EDW:
   type: latency
   label: Intraday EDW

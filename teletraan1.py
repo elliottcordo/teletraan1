@@ -21,7 +21,7 @@ err_config = 'The Config File: \'{0}\' is not recognized by python.\n\n'\
 # ------------------------------------------------------------------------
 #declare application
 app = Flask(__name__, static_url_path = "/static", static_folder = "static")
-app.debug = True
+app.debug = False
 
 # ------------------------------------------------------------------------
 @app.route('/index')        #http://localhost:5000/index
@@ -69,7 +69,7 @@ def parse_checklist(config):
     config_path = "{0}/cfg/{1}.yaml".format(sys.path[0], config)
     with open(config_path, 'r') as checklist_yaml:
         check_list = yaml.load(checklist_yaml)
-    print check_list
+    # print check_list
     return check_list
 
 
@@ -126,7 +126,7 @@ def calc_latency_tests(result, check):
         result['alert_level'] = 'SUCCESS'
     result['latency'] = latency
     result['label'] = check['label']
-    print result
+    # print result
     return result
 
 
@@ -153,7 +153,7 @@ def calc_daily_tests(result, check):
     result['sort'] = check['sort']
     result['sched_end_time'] = sched_end_time
     result['latency'] = latency
-    print result
+    # print result
     return result
 
 
