@@ -40,8 +40,10 @@ def get_jobs(config):
             # if sort field then sort by it, else based on name
             try:
                 jobs.sort(key=operator.itemgetter('sort'))
+                # print 'sorted'
             except:
                 jobs.sort()
+                # print "no sort"
         else:
             err_msg = err_config.format(config_path)
             return err_msg
@@ -126,6 +128,7 @@ def calc_latency_tests(result, check):
         result['alert_level'] = 'SUCCESS'
     result['latency'] = latency
     result['label'] = check['label']
+    result['sort'] = check['sort']
     # print result
     return result
 
