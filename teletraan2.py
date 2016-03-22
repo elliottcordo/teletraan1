@@ -23,6 +23,9 @@ err_config = 'The Config File: \'{0}\' is not recognized by python.\n\n'\
 app = Flask(__name__, static_url_path = "/static", static_folder = "static")
 app.debug = False
 
+
+job_state = []
+
 # ------------------------------------------------------------------------
 @app.route('/index')        #http://localhost:5000/index
 def index():
@@ -75,7 +78,7 @@ def parse_checklist(config):
     return check_list
 
 
-class GetTestResult:
+class GetTestResult(object):
     def __init__(self):
         c = Conf()
         c.read('teletraan1.cfg')
@@ -86,7 +89,6 @@ class GetTestResult:
         self.TestDBConn = pymssql.connect(server, user, pwd, database)
 
     def exec_tests(self, config):
-        result = []
         checklist = parse_checklist(config)
         cursor = self.TestDBConn.cursor(as_dict=True)
         for f in checklist:
@@ -94,8 +96,6 @@ class GetTestResult:
             type = check['type']
             cursor.execute(check['sql'])
             row = cursor.fetchone()
-            if row == None:
-                row = {'status':1, 'last_start_time':None, 'last_end_time':None, 'status_message':'Not Started'}
             if type == 'latency':
                 test = calc_latency_tests(row, check)
             elif type == 'daily':
@@ -103,8 +103,8 @@ class GetTestResult:
             else:
                 print 'invalid test yo!'
                 continue
-            result.append(test)
-        return result
+            job_state.append(test)
+        return job_state
 
     def close_connection(self):
         self.TestDBConn.close()
@@ -121,7 +121,7 @@ def calc_latency_tests(result, check):
     status = result['status']
     if latency >= max_latency:
         result['alert_level'] = 'FAILURE'
-        result['status_message'] = 'latency issue'
+        result['status_message'] = result['status_message'] + 'w/ latency issue'
     elif status == 1:
         result['alert_level'] = 'FAILURE'
     elif latency >= max_latency*.8:
@@ -168,6 +168,7 @@ def calc_daily_tests(result, check):
 def log(message):
     logging.info(message)
     print(message)
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug = False)
