@@ -16,7 +16,7 @@ DW DMR:
   label: 'DW DMR'
   sql: "dbo.DW_DQ_Infa_Teletran_Watch_Daily 'Wf_Datawarehouse_DMR'"
   end_time: '06:00'
-
+#
 DW Dashboard:
   type: daily
   sort: 4

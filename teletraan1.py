@@ -131,7 +131,7 @@ def calc_latency_tests(result, check):
     result['latency'] = latency
     result['label'] = check['label']
     result['sort'] = check['sort']
-    # print result
+    print result
     return result
 
 
@@ -158,7 +158,7 @@ def calc_daily_tests(result, check):
     result['sort'] = check['sort']
     result['sched_end_time'] = sched_end_time
     result['latency'] = latency
-    # print result
+    #print result
     return result
 
 
