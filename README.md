@@ -1,6 +1,6 @@
 # Teletraan1
 
-![robopager](https://github.com/elliottcordo/teletran1/blob/master/docs/teletran.png)
+![robopager](docs/teletran.png)
 
 _(Super Computer from Original Transformers Series)_
 
